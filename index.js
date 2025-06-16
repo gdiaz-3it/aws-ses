@@ -9,11 +9,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
 const sesClient = new SESClient({
   region: process.env.AWS_REGION,
   credentials: {
@@ -57,4 +52,9 @@ app.post('/send-email', async (req, res) => {
         res.status(500).json({ error: 'Failed to send email', details: error.message });
     }
 });
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
 
